@@ -10,7 +10,6 @@ public class Frame extends JFrame {
 	public Frame() {
 		this.setTitle("Tic-Tac-Toe");
 		this.setPreferredSize(new Dimension(600, 600));
-		//this.setResizable(false);
 		this.setLocation(50, 50);
 		this.setVisible(true);
 	}
