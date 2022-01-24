@@ -3,12 +3,10 @@ package net.yellowgold.tic_tac_toe;
 import java.awt.Dimension;
 import java.awt.TextField;
 import java.awt.Toolkit;
-import java.io.Serial;
 
 import javax.swing.JFrame;
 
 public class WonFrame extends JFrame {
-	@Serial
 	private static final long serialVersionUID = 1L;
 
 	public WonFrame(Value winner) {
