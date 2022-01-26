@@ -1,11 +1,8 @@
 on:
-  workflow_dispatch:
+  push:
     # Sequence of patterns matched against refs/tags
-    inputs:
-      version:
-        description: 'Version'     
-        required: true
-        default: 'v0.0.0'
+    tags:
+      - 'v*'
 
 name: Create Release
 
@@ -22,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: Release ${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.commits[0].message }}
+          release_name: Release ${{ github.event.commits[0].message }}
           body: |
             You can find the changelog here: https://github.com/LetsFinishSchool/Tic-tac-toe/blob/silverminer/changelog.md
           draft: false
