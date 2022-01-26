@@ -1,10 +1,7 @@
-on:
+on: 
   push:
-    # Sequence of patterns matched against refs/tags
-    branches:
-      - silverminer
     tags:
-      - 'v*'
+      - "v*"
 
 name: Create Release
 
