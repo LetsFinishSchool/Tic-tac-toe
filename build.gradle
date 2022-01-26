@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.beryx.runtime' version '1.12.7'
 }
 
 group 'net.yellowgold'
@@ -16,4 +18,26 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "net.yellowgold.tic_tac_toe.TicTacToeLauncher"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+application {
+    mainClassName = 'net.yellowgold.tic_tac_toe.TicTacToeLauncher'
+}
+
+runtime {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    javaHome = '/home/silverminer/.jdks/temurin-17.0.1'
+    jpackage {
+        installerType = 'deb'
+    }
 }
