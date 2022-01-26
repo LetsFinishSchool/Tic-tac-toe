@@ -1,4 +1,4 @@
-package net.yellowgold.tic_tac_toe;
+package net.yellowgold.tic_tac_toe.game;
 
 public enum Value {
 	X("O"), O("X"), NONE("NONE");

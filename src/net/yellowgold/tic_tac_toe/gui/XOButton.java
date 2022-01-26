@@ -1,4 +1,6 @@
-package net.yellowgold.tic_tac_toe;
+package net.yellowgold.tic_tac_toe.gui;
+
+import net.yellowgold.tic_tac_toe.game.Value;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,28 +11,26 @@ public class XOButton extends JButton implements ActionListener {
    private static final long serialVersionUID = 1L;
    private Value value = Value.NONE;
    private final TicTacToeGame game;
+   private final int index;
 
-   public XOButton(TicTacToeGame game) {
+   public XOButton(TicTacToeGame game, int index) {
       this.game = game;
+      this.index = index;
       this.setOpaque(true);
       this.setFont(new Font("DejaVu Math TeX Gyre", Font.ITALIC, 100));
+      this.setFocusable(false);
       this.addActionListener(this);
+      this.setText("");
    }
 
    @Override
    public void actionPerformed(ActionEvent e) {
-      if (this.isEnabled() && game.isGameRunning()) {
-         this.setValue(this.game.getPlayersValue());
-         this.game.playerSetValue();
-      }
+      this.game.onButtonPressed(this.index);
    }
 
    public void setValue(Value value) {
-      if (this.isEnabled() && this.game.isGameRunning()) {
-         this.value = value;
-         this.setEnabled(false);
-         this.setText(value.toString());
-      }
+      this.value = value;
+      this.setText(value == Value.NONE ? "" : value.toString());
    }
 
    public Value getValue() {
