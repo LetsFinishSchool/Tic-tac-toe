@@ -3,14 +3,9 @@ name: Gradle Build
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [ '17.0.1' ]
-      fail-fast: false
-    name: ${{ matrix.os }}
+  release:
+    runs-on: ubuntu-latest
+    name: create-release
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
@@ -28,6 +23,17 @@ jobs:
            - Second Change
          draft: false
          prerelease: false
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        java: [ '17.0.1' ]
+      fail-fast: false
+    name: ${{ matrix.os }}
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
     - name: Set up JDK
       uses: actions/setup-java@v1
       with:
