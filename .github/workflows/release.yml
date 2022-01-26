@@ -3,6 +3,8 @@ on:
     # Sequence of patterns matched against refs/tags
     branches:
       - silverminer
+    tags:
+      - 'v*'
 
 name: Create Release
 
