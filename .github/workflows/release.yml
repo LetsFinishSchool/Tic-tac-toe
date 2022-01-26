@@ -25,8 +25,6 @@ jobs:
           tag_name: ${{ github.event.inputs.version }}
           release_name: Release ${{ github.event.inputs.version }}
           body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+            You can find the changelog here: https://github.com/LetsFinishSchool/Tic-tac-toe/blob/silverminer/changelog.md
           draft: false
           prerelease: false
