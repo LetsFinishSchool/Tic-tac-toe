@@ -1,6 +1,9 @@
 name: Gradle Build
 
-on: [push, pull_request]
+on: 
+  push:
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -14,8 +17,6 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-    - name: Create Release
-      uses: release.yml@v1
     - name: Set up JDK
       uses: actions/setup-java@v1
       with:
