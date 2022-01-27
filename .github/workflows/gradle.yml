@@ -51,3 +51,35 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: build/jpackage/*.rpm
+  jar:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '17.0.1' ]
+      fail-fast: false
+    name: upload jar and app-image
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Echo JAVA_HOME
+        run: echo $JAVA_HOME
+      - name: Verify Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Execute build
+        run: ./gradlew --info --stacktrace build
+      - name: Execute runtime
+        run: ./gradlew --info --stacktrace runtime
+      - name: Execute jpackage
+        run: ./gradlew --info --stacktrace jpackage
+      - name: Upload Jar as an artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/libs/*.jar
+      - name: Upload App Images as an artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/distributions/*
