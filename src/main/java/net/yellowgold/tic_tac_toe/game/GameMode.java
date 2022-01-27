@@ -109,7 +109,7 @@ public abstract class GameMode {
                return 6;
             }
          } else if (this.getGame().getValues()[6] == Value.X) {
-            if(this.getGame().getValues()[8] == Value.NONE) {
+            if(this.getGame().getValues()[8] == Value.NONE && this.getGame().getValues()[7] == Value.NONE) {
                return 8;
             } else {
                return 2;
