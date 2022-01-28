@@ -1,59 +1,64 @@
 package com.dieserholm.tiktactoe;
 
 import java.awt.event.ActionEvent;
+import java.util.Objects;
 import java.util.Random;
 
-public class easKI extends TicTacToe {
+public class medKI extends TicTacToe {
 
 	Random r = new Random();
 	Boolean firstTurn = r.nextBoolean();
+	Boolean win =false;
 	int Turn = 0;
 
-	easKI() {
+	medKI() {
 		start();
-		if (firstTurn == true)
+		if (firstTurn)
 			textfield.setText("X's Turn");
-		else if (firstTurn == true)
+		else {
 			textfield.setText("O's Turn");
-
+			KI();
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		for (int i = 0; i < 9; i++) {
 			if (e.getSource() == button[i]) {
-				if (firstTurn == true) {
+				{
 					denabler(i);
 					Turn++;
-				} else if (firstTurn == false) {
-					
+					win = checkresult();
+					if(!win)
 					KI();
 				}
 			}
 		}
 	}
 
-	public void KI() {
-		if (Turn == 0) {
-			denabler(3);
-		}
-		if(Turn == 1 && button[3].getText()=="")
-			denabler(3);
-		else
-			denabler(0);
-		if(Turn == 2  ) {}
-	}
-
 	public void denabler(int index) {
 
-		if (firstTurn == true) {
+		if (firstTurn) {
 			button[index].setText("X");
 			firstTurn = false;
-		} else if (firstTurn == false) {
+		} else {
 			button[index].setText("O");
 			firstTurn = true;
 		}
 		button[index].setEnabled(false);
+	}
 
+	public void KI() {
+		int pos;
+		while (true) {
+			Turn++;
+			pos = r.nextInt(9);
+			System.out.println(pos);
+			if (Objects.equals(button[pos].getText(), "")) {
+				denabler(pos);
+				checkresult();
+				break;
+			}
+		}
 	}
 }

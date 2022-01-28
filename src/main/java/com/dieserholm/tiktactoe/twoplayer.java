@@ -7,7 +7,7 @@ public class twoplayer extends TicTacToe {
 	
 	twoplayer() {
 		start();
-		if (Turn == true)
+		if (Turn)
 			textfield.setText("X's Turn");
 		else
 			textfield.setText("O's Turn");
@@ -18,7 +18,7 @@ public class twoplayer extends TicTacToe {
 		for (int i = 0; i <= 8; i++) {
 			if (e.getSource() == button[i]) {
 				button[i].setEnabled(false);
-				if (Turn == true) {
+				if (Turn) {
 					button[i].setForeground(Color.red);
 					button[i].setText("X");
 					textfield.setText("O's Turn");

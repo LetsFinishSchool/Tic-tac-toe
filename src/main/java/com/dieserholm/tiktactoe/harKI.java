@@ -12,7 +12,7 @@ public class harKI extends TicTacToe {
 
 	harKI() {
 		start();
-		if (firstTurn == true)
+		if (firstTurn)
 			textfield.setText("X's Turn");
 		else {
 			textfield.setText("O's Turn");
@@ -28,7 +28,7 @@ public class harKI extends TicTacToe {
 					denabler(i);
 					Turn++;
 					win = checkresult();
-					if(win ==false)
+					if(!win)
 					KI();
 				}
 			}
@@ -37,10 +37,10 @@ public class harKI extends TicTacToe {
 
 	public void denabler(int index) {
 
-		if (firstTurn == true) {
+		if (firstTurn) {
 			button[index].setText("X");
 			firstTurn = false;
-		} else if (firstTurn == false) {
+		} else {
 			button[index].setText("O");
 			firstTurn = true;
 		}

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.Objects;
 import java.util.Random;
 
 public class TicTacToe implements ActionListener {
@@ -75,7 +76,7 @@ public class TicTacToe implements ActionListener {
 
 			if (i < 2)
 				mmnorth_panel.add(mbutton[i]);
-			else if (i >= 2 && i <= 4)
+			else if (i <= 4)
 				mmcenter_panel.add(mbutton[i]);
 			else
 				mmsouth_panel.add(mbutton[i]);
@@ -136,14 +137,14 @@ public class TicTacToe implements ActionListener {
 					mbutton[2].setEnabled(true);
 					mbutton[3].setEnabled(true);
 					mbutton[4].setEnabled(false);
-				} else if (i == 5) {
-					if (mbutton[0].isEnabled() == false && mbutton[2].isEnabled() == false) {
+				} else {
+					if (!mbutton[0].isEnabled() && !mbutton[2].isEnabled()) {
 						new easKI();
-					} else if (mbutton[0].isEnabled() == false && mbutton[3].isEnabled() == false) {
+					} else if (!mbutton[0].isEnabled() && !mbutton[3].isEnabled()) {
 						new medKI();
-					} else if (mbutton[0].isEnabled() == false && mbutton[4].isEnabled() == false) {
+					} else if (!mbutton[0].isEnabled() && !mbutton[4].isEnabled()) {
 						new harKI();
-					} else if (mbutton[1].isEnabled() == false) {
+					} else if (!mbutton[1].isEnabled()) {
 						new twoplayer();
 					}
 				}
@@ -163,41 +164,41 @@ public class TicTacToe implements ActionListener {
 	}
 
 	public boolean checkresult() {
-		if (button[0].getText() == "X" && button[1].getText() == "X" && button[2].getText() == "X") {
+		if (Objects.equals(button[0].getText(), "X") && Objects.equals(button[1].getText(), "X") && Objects.equals(button[2].getText(), "X")) {
 			xwins(0, 1, 2);return true;
-		} else if (button[3].getText() == "X" && button[4].getText() == "X" && button[5].getText() == "X") {
+		} else if (Objects.equals(button[3].getText(), "X") && Objects.equals(button[4].getText(), "X") && Objects.equals(button[5].getText(), "X")) {
 			xwins(3, 4, 5);return true;
-		} else if (button[6].getText() == "X" && button[7].getText() == "X" && button[8].getText() == "X") {
+		} else if (Objects.equals(button[6].getText(), "X") && Objects.equals(button[7].getText(), "X") && Objects.equals(button[8].getText(), "X")) {
 			xwins(6, 7, 8);return true;
-		} else if (button[0].getText() == "X" && button[3].getText() == "X" && button[6].getText() == "X") {
+		} else if (Objects.equals(button[0].getText(), "X") && Objects.equals(button[3].getText(), "X") && Objects.equals(button[6].getText(), "X")) {
 			xwins(0, 3, 6);return true;
-		} else if (button[1].getText() == "X" && button[4].getText() == "X" && button[7].getText() == "X") {
+		} else if (Objects.equals(button[1].getText(), "X") && Objects.equals(button[4].getText(), "X") && Objects.equals(button[7].getText(), "X")) {
 			xwins(1, 4, 7);return true;
-		} else if (button[2].getText() == "X" && button[5].getText() == "X" && button[8].getText() == "X") {
+		} else if (Objects.equals(button[2].getText(), "X") && Objects.equals(button[5].getText(), "X") && Objects.equals(button[8].getText(), "X")) {
 			xwins(2, 5, 8);return true;
-		} else if (button[0].getText() == "X" && button[4].getText() == "X" && button[8].getText() == "X") {
+		} else if (Objects.equals(button[0].getText(), "X") && Objects.equals(button[4].getText(), "X") && Objects.equals(button[8].getText(), "X")) {
 			xwins(0, 4, 8);return true;
-		} else if (button[2].getText() == "X" && button[4].getText() == "X" && button[6].getText() == "X") {
+		} else if (Objects.equals(button[2].getText(), "X") && Objects.equals(button[4].getText(), "X") && Objects.equals(button[6].getText(), "X")) {
 			xwins(2, 4, 6);return true;
-		} else if (button[0].getText() == "O" && button[1].getText() == "O" && button[2].getText() == "O") {
+		} else if (Objects.equals(button[0].getText(), "O") && Objects.equals(button[1].getText(), "O") && Objects.equals(button[2].getText(), "O")) {
 			owins(0, 1, 2);return true;
-		} else if (button[3].getText() == "O" && button[4].getText() == "O" && button[5].getText() == "O") {
+		} else if (Objects.equals(button[3].getText(), "O") && Objects.equals(button[4].getText(), "O") && Objects.equals(button[5].getText(), "O")) {
 			owins(3, 4, 5);return true;
-		} else if (button[6].getText() == "O" && button[7].getText() == "O" && button[8].getText() == "O") {
+		} else if (Objects.equals(button[6].getText(), "O") && Objects.equals(button[7].getText(), "O") && Objects.equals(button[8].getText(), "O")) {
 			owins(6, 7, 8);return true;
-		} else if (button[0].getText() == "O" && button[3].getText() == "O" && button[6].getText() == "O") {
+		} else if (Objects.equals(button[0].getText(), "O") && Objects.equals(button[3].getText(), "O") && Objects.equals(button[6].getText(), "O")) {
 			owins(0, 3, 6);return true;
-		} else if (button[1].getText() == "O" && button[4].getText() == "O" && button[7].getText() == "O") {
+		} else if (Objects.equals(button[1].getText(), "O") && Objects.equals(button[4].getText(), "O") && Objects.equals(button[7].getText(), "O")) {
 			owins(1, 4, 7);return true;
-		} else if (button[2].getText() == "O" && button[5].getText() == "O" && button[8].getText() == "O") {
+		} else if (Objects.equals(button[2].getText(), "O") && Objects.equals(button[5].getText(), "O") && Objects.equals(button[8].getText(), "O")) {
 			owins(2, 5, 8);return true;
-		} else if (button[0].getText() == "O" && button[4].getText() == "O" && button[8].getText() == "O") {
+		} else if (Objects.equals(button[0].getText(), "O") && Objects.equals(button[4].getText(), "O") && Objects.equals(button[8].getText(), "O")) {
 			owins(0, 4, 8);return true;
-		} else if (button[2].getText() == "O" && button[4].getText() == "O" && button[6].getText() == "O") {
+		} else if (Objects.equals(button[2].getText(), "O") && Objects.equals(button[4].getText(), "O") && Objects.equals(button[6].getText(), "O")) {
 			owins(2, 4, 6);return true;
-		} else if (button[0].getText() != "" && button[1].getText() != "" && button[2].getText() != ""
-				&& button[3].getText() != "" && button[4].getText() != "" && button[5].getText() != ""
-				&& button[6].getText() != "" && button[7].getText() != "" && button[8].getText() != "") {
+		} else if (!Objects.equals(button[0].getText(), "") && !Objects.equals(button[1].getText(), "") && !Objects.equals(button[2].getText(), "")
+				&& !Objects.equals(button[3].getText(), "") && !Objects.equals(button[4].getText(), "") && !Objects.equals(button[5].getText(), "")
+				&& !Objects.equals(button[6].getText(), "") && !Objects.equals(button[7].getText(), "") && !Objects.equals(button[8].getText(), "")) {
 			textfield.setText("it is a tie");
 			for (int i = 0; i < 9; i++) {
 				button[i].setBackground(new Color(255,180,0));
